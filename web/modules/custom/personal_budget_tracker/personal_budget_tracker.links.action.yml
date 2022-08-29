@@ -1,0 +1,5 @@
+income_source.add_form:
+  title: 'Add income source'
+  route_name: entity.income_source.add_form
+  appears_on:
+    - entity.income_source.collection

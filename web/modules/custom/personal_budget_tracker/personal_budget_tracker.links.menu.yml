@@ -1,0 +1,10 @@
+entity.income_source.settings:
+  title: 'Income Source'
+  description: 'Configure an Income Source entity type.'
+  route_name:  entity.income_source.settings
+  parent: system.admin_structure
+entity.income_source.collection:
+  title: 'Income Sources'
+  description: 'List of income sources.'
+  route_name: entity.income_source.collection
+  parent: system.admin_content

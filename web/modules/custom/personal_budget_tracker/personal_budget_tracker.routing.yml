@@ -1,0 +1,12 @@
+entity.income_source.settings:
+  path: 'admin/structure/income-source'
+  defaults:
+    _form: '\Drupal\personal_budget_tracker\Form\IncomeSourceSettingsForm'
+    _title: 'Income Source'
+  requirements:
+    _permission: 'administer own income source'
+
+entity.income_source.collection:
+ path: '/income-source'
+ requirements:
+  _permission: 'administer own income source'

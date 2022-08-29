@@ -1,0 +1,22 @@
+entity.income_source.settings:
+  title: 'Settings'
+  route_name: entity.income_source.settings
+  base_route: entity.income_source.settings
+entity.income_source.view:
+  title: 'View'
+  route_name: entity.income_source.canonical
+  base_route: entity.income_source.canonical
+entity.income_source.edit_form:
+  title: 'Edit'
+  route_name: entity.income_source.edit_form
+  base_route: entity.income_source.canonical
+entity.income_source.delete_form:
+  title: 'Delete'
+  route_name: entity.income_source.delete_form
+  base_route: entity.income_source.canonical
+  weight: 10
+entity.income_source.collection:
+  title: 'Income Sources'
+  route_name: entity.income_source.collection
+  base_route: system.admin_content
+  weight: 10

@@ -1,0 +1,10 @@
+entity.income_source.edit_form:
+  route_name: entity.income_source.edit_form
+  group: income_source
+  title: Edit
+
+entity.income_source.delete_form:
+  route_name: entity.income_source.delete_form
+  group: income_source
+  title: Delete
+  weight: 10
