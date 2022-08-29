@@ -1,0 +1,5 @@
+name: Personal Budget Tracker
+type: module
+description: Application to track monthly budget
+package: custom
+core_version_requirement: ^9 || ^10
