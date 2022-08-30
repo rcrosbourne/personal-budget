@@ -36,7 +36,7 @@ class IncomeSourceForm extends ContentEntityForm {
         break;
     }
 
-    $form_state->setRedirect('entity.income_source.canonical', ['income_source' => $entity->id()]);
+    $form_state->setRedirect('entity.income_source.collection');
 
     return $result;
   }

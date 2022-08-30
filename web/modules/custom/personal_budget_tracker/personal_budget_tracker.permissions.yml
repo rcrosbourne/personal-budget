@@ -1,5 +1,7 @@
 administer income source:
   title: 'Administer income source settings'
   restrict access: true
+
 administer own income source:
-  title: 'Administer own income source'
+  title: 'Administer (view/create/update/delete) own income source'
+

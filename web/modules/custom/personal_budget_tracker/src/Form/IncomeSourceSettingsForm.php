@@ -23,17 +23,17 @@ class IncomeSourceSettingsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
 
     $form['settings'] = [
-      '#markup' => $this->t('Settings form for an income source entity type.'),
+      '#markup' => $this->t('No other settings is needed.'),
     ];
 
-    $form['actions'] = [
-      '#type' => 'actions',
-    ];
-
-    $form['actions']['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Save'),
-    ];
+//    $form['actions'] = [
+//      '#type' => 'actions',
+//    ];
+//
+//    $form['actions']['submit'] = [
+//      '#type' => 'submit',
+//      '#value' => $this->t('Save'),
+//    ];
 
     return $form;
   }

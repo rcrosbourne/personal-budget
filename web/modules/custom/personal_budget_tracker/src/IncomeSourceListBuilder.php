@@ -67,10 +67,10 @@ class IncomeSourceListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('ID');
-    $header['label'] = $this->t('Label');
+    $header['label'] = $this->t('Type');
     $header['amount'] = $this->t('Amount');
     $header['uid'] = $this->t('Author');
+    $header['changed'] = $this->t('Last Updated');
     return $header + parent::buildHeader();
   }
 
@@ -79,13 +79,13 @@ class IncomeSourceListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\personal_budget_tracker\IncomeSourceInterface $entity */
-    $row['id'] = $entity->id();
     $row['label'] = $entity->toLink();
-    $row['amount'] = "$" . number_format($entity->get('amount')->value, 2);
+    $row['amount'] = "$" . number_format($entity->get('field_amount')->value, 2);
     $row['uid']['data'] = [
       '#theme' => 'username',
       '#account' => $entity->getOwner(),
     ];
+    $row['changed'] = $this->dateFormatter->format($entity->getChangedTime(), 'html_date');
     return $row + parent::buildRow($entity);
   }
 

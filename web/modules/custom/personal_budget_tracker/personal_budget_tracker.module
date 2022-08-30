@@ -68,4 +68,12 @@ function personal_budget_tracker_user_predelete(UserInterface $account) {
     ->execute();
   $income_sources = $storage->loadMultiple($income_source_ids);
   $storage->delete($income_sources);
+  // Delete old revisions.
+  $income_source_ids = $storage->getQuery()
+    ->allRevisions()
+    ->condition('uid', $account->id())
+    ->execute();
+  foreach (array_keys($income_source_ids) as $revision_id) {
+    $storage->deleteRevision($revision_id);
+  }
 }

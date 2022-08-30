@@ -19,8 +19,6 @@
     {{ title_suffix }}
   {% endif %}
   {% if content %}
-    <div>
-      <h2>Amount: {{content.amount }}</h2>
-    </div>
+    {{- content -}}
   {% endif %}
 </article>
