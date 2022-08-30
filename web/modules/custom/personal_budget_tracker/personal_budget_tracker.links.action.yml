@@ -3,3 +3,4 @@ income_source.add_form:
   route_name: entity.income_source.add_form
   appears_on:
     - entity.income_source.collection
+    - entity.income_sources

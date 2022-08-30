@@ -5,3 +5,10 @@ entity.income_source.settings:
     _title: 'Income Source'
   requirements:
     _permission: 'administer income source'
+
+entity.income_sources:
+  path: '/income-sources'
+  defaults:
+    _title: 'Income Sources'
+  requirements:
+    _permission: 'administer own income source'

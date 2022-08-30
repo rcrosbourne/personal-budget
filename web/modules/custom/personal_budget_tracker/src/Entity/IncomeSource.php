@@ -25,7 +25,7 @@ use Drupal\user\EntityOwnerTrait;
  *   ),
  *   handlers = {
  *     "list_builder" = "Drupal\personal_budget_tracker\IncomeSourceListBuilder",
- *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "views_data" = "Drupal\personal_budget_tracker\IncomeSourceViewsData",
  *     "access" = "Drupal\personal_budget_tracker\IncomeSourceAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\personal_budget_tracker\Form\IncomeSourceForm",
@@ -69,7 +69,7 @@ class IncomeSource extends RevisionableContentEntityBase implements IncomeSource
 
   public static function preCreate(EntityStorageInterface $storage, array &$values) {
     parent::preCreate($storage, $values);
-    $values['uid'] += \Drupal::currentUser()->id();
+    $values['uid'] = \Drupal::currentUser()->id();
   }
 
   /**

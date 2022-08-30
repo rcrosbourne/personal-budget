@@ -35,9 +35,11 @@ class IncomeSourceForm extends ContentEntityForm {
         $this->logger('personal_budget_tracker')->notice('Updated income source %label.', $logger_arguments);
         break;
     }
-
-    $form_state->setRedirect('entity.income_source.collection');
-
+    if(in_array("Administrator", $this->currentUser()->getRoles())) {
+      $form_state->setRedirect('entity.income_source.collection');
+    } else {
+      $form_state->setRedirect('entity.income_sources');
+    }
     return $result;
   }
 
