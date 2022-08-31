@@ -12,3 +12,7 @@ administer monthly expense:
 
 administer own monthly expense:
   title: 'Administer own monthly expense'
+
+administer monthly budget:
+  title: 'Administer monthly budget settings'
+  restrict access: true

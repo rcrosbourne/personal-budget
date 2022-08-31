@@ -27,3 +27,10 @@ entity.monthly_expenses:
     _title: 'Monthly Expense'
   requirements:
     _permission: 'administer own monthly expense'
+entity.monthly_budget.settings:
+  path: 'admin/structure/monthly-budget'
+  defaults:
+    _form: '\Drupal\personal_budget_tracker\Form\MonthlyBudgetSettingsForm'
+    _title: 'Monthly Budget'
+  requirements:
+    _permission: 'administer monthly budget'

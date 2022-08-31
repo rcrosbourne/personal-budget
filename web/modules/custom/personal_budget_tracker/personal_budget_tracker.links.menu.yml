@@ -19,3 +19,14 @@ entity.monthly_expense.collection:
   description: 'List of monthly expenses.'
   route_name: entity.monthly_expense.collection
   parent: system.admin_content
+
+entity.monthly_budget.settings:
+  title: 'Monthly Budget'
+  description: 'Configure a Monthly Budget entity type.'
+  route_name:  entity.monthly_budget.settings
+  parent: system.admin_structure
+entity.monthly_budget.collection:
+  title: 'Monthly Budgets'
+  description: 'List of monthly budgets.'
+  route_name: entity.monthly_budget.collection
+  parent: system.admin_content

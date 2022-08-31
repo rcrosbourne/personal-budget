@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a monthly budget entity.
+ *
+ * This template is used when viewing a canonical monthly budget page,
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.label'.
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_monthly_budget()
+ */
+#}
+<article{{ attributes }}>
+  {% if view_mode != 'full' %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+  {% endif %}
+  {% if content %}
+    <div>Total Income:: {{monthly_budget.getTotalIncome()}}</div>
+    <div>Total Expenses:: {{monthly_budget.getTotalExpenses()}}</div>
+    <div>Cash Balance:: {{monthly_budget.getCashBalance()}}</div>
+    <h2>Breakdown</h2>
+    <div>Income Sources</div>
+    <ul>
+      {% for incomeSource in monthly_budget.getIncomeSources() %}
+        <li>{{ incomeSource.get('label').value }} --- {{ incomeSource.get('field_amount').value}}</li>
+      {% endfor %}
+    </ul>
+
+    <div>Expenses Sources</div>
+    <ul>
+      {% for monthlyExpense in monthly_budget.getMonthlyExpenses() %}
+        <li>{{ monthlyExpense.get('field_expense_type').entity.get('name').value }} --- {{monthlyExpense.get('field_amount').value}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>
