@@ -12,3 +12,18 @@ entity.income_sources:
     _title: 'Income Sources'
   requirements:
     _permission: 'administer own income source'
+
+entity.monthly_expense.settings:
+  path: 'admin/structure/monthly-expense'
+  defaults:
+    _form: '\Drupal\personal_budget_tracker\Form\MonthlyExpenseSettingsForm'
+    _title: 'Monthly Expense'
+  requirements:
+    _permission: 'administer monthly expense'
+
+entity.monthly_expenses:
+  path: '/monthly-expenses'
+  defaults:
+    _title: 'Monthly Expense'
+  requirements:
+    _permission: 'administer own monthly expense'

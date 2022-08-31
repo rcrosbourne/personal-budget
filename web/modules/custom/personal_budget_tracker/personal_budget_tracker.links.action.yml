@@ -4,3 +4,10 @@ income_source.add_form:
   appears_on:
     - entity.income_source.collection
     - entity.income_sources
+
+monthly_expense.add_form:
+  title: 'Add monthly expense'
+  route_name: entity.monthly_expense.add_form
+  appears_on:
+    - entity.monthly_expense.collection
+    - entity.monthly_expenses

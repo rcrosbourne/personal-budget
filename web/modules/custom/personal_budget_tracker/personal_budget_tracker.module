@@ -17,6 +17,9 @@ function personal_budget_tracker_theme() {
     'income_source' => [
       'render element' => 'elements',
     ],
+    'monthly_expense' => [
+      'render element' => 'elements',
+    ],
   ];
 }
 
@@ -85,5 +88,29 @@ function personal_budget_tracker_user_predelete(UserInterface $account) {
     ->execute();
   foreach (array_keys($income_source_ids) as $revision_id) {
     $storage->deleteRevision($revision_id);
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('monthly_expense');
+  $monthly_expense_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $monthly_expenses = $storage->loadMultiple($monthly_expense_ids);
+  $storage->delete($monthly_expenses);
+}
+
+/**
+ * Prepares variables for monthly expense templates.
+ *
+ * Default template: monthly-expense.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the monthly expense information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_monthly_expense(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
   }
 }

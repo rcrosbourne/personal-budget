@@ -5,3 +5,10 @@ administer income source:
 administer own income source:
   title: 'Administer (view/create/update/delete) own income source'
 
+
+administer monthly expense:
+  title: 'Administer monthly expense settings'
+  restrict access: true
+
+administer own monthly expense:
+  title: 'Administer own monthly expense'

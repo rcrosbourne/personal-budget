@@ -8,3 +8,14 @@ entity.income_source.delete_form:
   group: income_source
   title: Delete
   weight: 10
+
+entity.monthly_expense.edit_form:
+  route_name: entity.monthly_expense.edit_form
+  group: monthly_expense
+  title: Edit
+
+entity.monthly_expense.delete_form:
+  route_name: entity.monthly_expense.delete_form
+  group: monthly_expense
+  title: Delete
+  weight: 10

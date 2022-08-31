@@ -8,3 +8,14 @@ entity.income_source.collection:
   description: 'List of income sources.'
   route_name: entity.income_source.collection
   parent: system.admin_content
+
+entity.monthly_expense.settings:
+  title: 'Monthly Expense'
+  description: 'Configure a Monthly Expense entity type.'
+  route_name:  entity.monthly_expense.settings
+  parent: system.admin_structure
+entity.monthly_expense.collection:
+  title: 'Monthly Expenses'
+  description: 'List of monthly expenses.'
+  route_name: entity.monthly_expense.collection
+  parent: system.admin_content

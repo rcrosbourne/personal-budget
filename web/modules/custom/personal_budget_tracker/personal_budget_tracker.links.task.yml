@@ -20,3 +20,26 @@ entity.income_source.collection:
   route_name: entity.income_source.collection
   base_route: system.admin_content
   weight: 10
+
+entity.monthly_expense.settings:
+  title: 'Settings'
+  route_name: entity.monthly_expense.settings
+  base_route: entity.monthly_expense.settings
+entity.monthly_expense.view:
+  title: 'View'
+  route_name: entity.monthly_expense.canonical
+  base_route: entity.monthly_expense.canonical
+entity.monthly_expense.edit_form:
+  title: 'Edit'
+  route_name: entity.monthly_expense.edit_form
+  base_route: entity.monthly_expense.canonical
+entity.monthly_expense.delete_form:
+  title: 'Delete'
+  route_name: entity.monthly_expense.delete_form
+  base_route: entity.monthly_expense.canonical
+  weight: 10
+entity.monthly_expense.collection:
+  title: 'Monthly Expenses'
+  route_name: entity.monthly_expense.collection
+  base_route: system.admin_content
+  weight: 10
