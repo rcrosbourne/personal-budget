@@ -21,6 +21,16 @@ function personal_budget_tracker_theme() {
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function personal_budget_tracker_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // remove revision log
+  if ($form_id == 'income_source_add_form') {
+    $form['revision_log']['#access'] = FALSE;
+  }
+}
+
+/**
  * Prepares variables for income source templates.
  *
  * Default template: income-source.html.twig.
