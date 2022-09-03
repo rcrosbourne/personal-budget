@@ -28,6 +28,7 @@ use Drupal\user\EntityOwnerTrait;
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "form" = {
  *       "add" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetForm",
+ *       "step_1" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetStep1Form",
  *       "edit" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },

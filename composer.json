@@ -23,6 +23,8 @@
         "drupal/core-recommended": "^9.4",
         "drupal/devel": "^4.1",
         "drupal/devel_entity_updates": "^4.0",
+        "drupal/examples": "^3.0",
+        "drupal/twig_tweak": "^3.1",
         "drush/drush": "^11.1"
     },
     "conflict": {

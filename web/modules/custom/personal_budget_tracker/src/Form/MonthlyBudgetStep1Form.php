@@ -2,16 +2,35 @@
 
 namespace Drupal\personal_budget_tracker\Form;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Form controller for the monthly budget entity edit forms.
  */
-class MonthlyBudgetForm extends ContentEntityForm {
+class MonthlyBudgetStep1Form extends ContentEntityForm {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
-    return parent::buildForm($form, $form_state);
+    $form = parent::buildForm($form, $form_state);
+    $form['field_month']['widget'][0]['value']['#date_part_order'] = ['month', 'year'];
+    $form['actions']['submit']['#value'] = $this->t('Save and Continue');
+    return $form;
+  }
+
+  protected function actions(array $form, FormStateInterface $form_state) {
+    $actions = parent::actions($form, $form_state);
+    $actions['cancel'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Cancel'),
+      '#submit' =>['::cancelSubmit'],
+    ];
+    $actions['#prefix'] = 'Step 1 of 3';
+    return $actions;
+  }
+
+  public function cancelSubmit(array $form, FormStateInterface $form_state) {
+    $form_state->setRedirect('entity.monthly_budget.collection');
   }
 
   /**
@@ -25,7 +44,7 @@ class MonthlyBudgetForm extends ContentEntityForm {
     $message_arguments = ['%label' => $entity->toLink()->toString()];
     $logger_arguments = [
       '%label' => $entity->label(),
-      'link' => $entity->toLink($this->t('View'))->toString(),
+      'link'   => $entity->toLink($this->t('View'))->toString(),
     ];
 
     switch ($result) {
