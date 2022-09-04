@@ -7,6 +7,8 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\personal_budget_tracker\MonthlyBudgetInterface;
 use Drupal\user\EntityOwnerTrait;
 
@@ -29,6 +31,7 @@ use Drupal\user\EntityOwnerTrait;
  *     "form" = {
  *       "add" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetForm",
  *       "step_1" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetStep1Form",
+ *       "step_2" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetStep2Form",
  *       "edit" = "Drupal\personal_budget_tracker\Form\MonthlyBudgetForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
@@ -63,7 +66,17 @@ class MonthlyBudget extends ContentEntityBase implements MonthlyBudgetInterface 
    * {@inheritdoc}
    */
   public function preSave(EntityStorageInterface $storage) {
+    // Check if income sources have an author
     parent::preSave($storage);
+    $incomeSources = $this->get('field_income_sources')->referencedEntities();
+    foreach ($incomeSources as $incomeSource) {
+      /** @var \Drupal\paragraphs\Entity\Paragraph $incomeSource */
+      $author = $incomeSource->get('field_author')->getValue();
+      if(empty($author)) {
+        $incomeSource->set('field_author', ['target_id' => \Drupal::currentUser()->id()]);
+        $incomeSource->save();
+      }
+    }
     if (!$this->getOwnerId()) {
       // If no owner has been set explicitly, make the anonymous user the owner.
       $this->setOwnerId(0);

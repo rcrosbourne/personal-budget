@@ -36,6 +36,7 @@ function personal_budget_tracker_form_alter(&$form, \Drupal\Core\Form\FormStateI
   }
 }
 
+
 /**
  * Prepares variables for income source templates.
  *
