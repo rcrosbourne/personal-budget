@@ -58,3 +58,19 @@ entity.add_monthly_budget.step2:
     _title: 'Add Income Sources'
   requirements:
     _permission: 'administer monthly budget'
+
+entity.income_source_paragraph.settings:
+  path: 'admin/structure/income-source-paragraph'
+  defaults:
+    _form: '\Drupal\personal_budget_tracker\Form\IncomeSourceParagraphSettingsForm'
+    _title: 'Income Source Paragraph'
+  requirements:
+    _permission: 'administer income source paragraph'
+
+entity.something_else.settings:
+  path: 'admin/structure/something-else'
+  defaults:
+    _form: '\Drupal\personal_budget_tracker\Form\SomethingElseSettingsForm'
+    _title: 'Something Else'
+  requirements:
+    _permission: 'administer something else'

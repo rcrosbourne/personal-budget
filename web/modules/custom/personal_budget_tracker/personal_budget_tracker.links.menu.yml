@@ -30,3 +30,25 @@ entity.monthly_budget.collection:
   description: 'List of monthly budgets.'
   route_name: entity.monthly_budget.collection
   parent: system.admin_content
+
+entity.income_source_paragraph.settings:
+  title: 'Income Source Paragraph'
+  description: 'Configure an Income Source Paragraph entity type.'
+  route_name:  entity.income_source_paragraph.settings
+  parent: system.admin_structure
+entity.income_source_paragraph.collection:
+  title: 'Income Source Paragraphs'
+  description: 'List of income source paragraphs.'
+  route_name: entity.income_source_paragraph.collection
+  parent: system.admin_content
+
+entity.something_else.settings:
+  title: 'Something Else'
+  description: 'Configure a Something Else entity type.'
+  route_name:  entity.something_else.settings
+  parent: system.admin_structure
+entity.something_else.collection:
+  title: 'Something Elses'
+  description: 'List of something elses.'
+  route_name: entity.something_else.collection
+  parent: system.admin_content

@@ -66,3 +66,23 @@ entity.monthly_budget.collection:
   route_name: entity.monthly_budget.collection
   base_route: system.admin_content
   weight: 10
+
+entity.income_source_paragraph.settings:
+  title: 'Settings'
+  route_name: entity.income_source_paragraph.settings
+  base_route: entity.income_source_paragraph.settings
+entity.income_source_paragraph.collection:
+  title: 'Income Source Paragraphs'
+  route_name: entity.income_source_paragraph.collection
+  base_route: system.admin_content
+  weight: 10
+
+entity.something_else.settings:
+  title: 'Settings'
+  route_name: entity.something_else.settings
+  base_route: entity.something_else.settings
+entity.something_else.collection:
+  title: 'Something Elses'
+  route_name: entity.something_else.collection
+  base_route: system.admin_content
+  weight: 10

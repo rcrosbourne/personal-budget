@@ -16,3 +16,11 @@ administer own monthly expense:
 administer monthly budget:
   title: 'Administer monthly budget settings'
   restrict access: true
+
+administer income source paragraph:
+  title: 'Administer income source paragraph settings'
+  restrict access: true
+
+administer something else:
+  title: 'Administer something else settings'
+  restrict access: true

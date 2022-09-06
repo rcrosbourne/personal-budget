@@ -17,3 +17,15 @@ monthly_budget.add_form:
   route_name: entity.monthly_budget.add_form
   appears_on:
     - entity.monthly_budget.collection
+
+income_source_paragraph.add_form:
+  title: 'Add income source paragraph'
+  route_name: entity.income_source_paragraph.add_form
+  appears_on:
+    - entity.income_source_paragraph.collection
+
+something_else.add_form:
+  title: 'Add something else'
+  route_name: entity.something_else.add_form
+  appears_on:
+    - entity.something_else.collection
