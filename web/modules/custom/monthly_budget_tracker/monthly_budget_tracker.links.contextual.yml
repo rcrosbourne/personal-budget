@@ -1,0 +1,10 @@
+entity.monthly_budget.edit_form:
+  route_name: entity.monthly_budget.edit_form
+  group: monthly_budget
+  title: Edit
+
+entity.monthly_budget.delete_form:
+  route_name: entity.monthly_budget.delete_form
+  group: monthly_budget
+  title: Delete
+  weight: 10

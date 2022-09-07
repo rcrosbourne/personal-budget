@@ -1,0 +1,11 @@
+[data-drupal-selector="tabledrag-toggle-weight-wrapper"] {
+    visibility: hidden;
+}
+
+@media (min-width: 992px) {
+    table[id^=field-monthly-income-sources-values] div[id^="edit-field-monthly-income-sources-"] {
+        -ms-grid-columns: 374px auto 1fr auto;
+        grid-template-columns: 374px auto 1fr auto;
+    }
+
+}

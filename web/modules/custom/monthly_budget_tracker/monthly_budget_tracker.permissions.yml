@@ -1,0 +1,3 @@
+administer monthly budget:
+  title: 'Administer monthly budget settings'
+  restrict access: true

@@ -1,0 +1,31 @@
+entity.monthly_budget.settings:
+  path: 'admin/structure/monthly-budget'
+  defaults:
+    _form: '\Drupal\monthly_budget_tracker\Form\MonthlyBudgetSettingsForm'
+    _title: 'Monthly Budget'
+  requirements:
+    _permission: 'administer monthly budget'
+
+entity.monthly_budget.add_budget:
+  path: '/monthly-budget/create'
+  defaults:
+    _entity_form: monthly_budget.step_1
+    _title: 'Monthly Budget Step 1'
+  requirements:
+    _permission: 'administer monthly budget'
+
+entity.monthly_budget.add_budget_step1:
+  path: '/monthly-budget/{monthly_budget}/step1'
+  defaults:
+    _entity_form: monthly_budget.step_1
+    _title: 'Monthly Budget Step 1'
+  requirements:
+    _permission: 'administer monthly budget'
+
+entity.monthly_budget.add_budget_step2:
+  path: '/monthly-budget/{monthly_budget}/step2'
+  defaults:
+    _entity_form: monthly_budget.step_2
+    _title: 'Monthly Budget Step 2'
+  requirements:
+    _permission: 'administer monthly budget'

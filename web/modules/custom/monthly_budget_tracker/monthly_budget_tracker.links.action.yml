@@ -1,0 +1,5 @@
+monthly_budget.add_form:
+  title: 'Add monthly budget'
+  route_name: entity.monthly_budget.add_form
+  appears_on:
+    - entity.monthly_budget.collection
