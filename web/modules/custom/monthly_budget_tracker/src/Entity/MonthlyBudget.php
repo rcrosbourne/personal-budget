@@ -31,6 +31,7 @@ use Drupal\user\EntityOwnerTrait;
  *       "add" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetForm",
  *       "step_1" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetFormStep1",
  *       "step_2" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetFormStep2",
+ *       "step_3" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetFormStep3",
  *       "edit" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },

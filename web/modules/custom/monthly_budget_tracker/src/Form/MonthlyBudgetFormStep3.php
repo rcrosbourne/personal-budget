@@ -9,7 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Form controller for the monthly budget entity edit forms.
  */
-class MonthlyBudgetFormStep2 extends ContentEntityForm {
+class MonthlyBudgetFormStep3 extends ContentEntityForm {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
@@ -22,18 +22,12 @@ class MonthlyBudgetFormStep2 extends ContentEntityForm {
       '#value'  => $this->t("Cancel"),
       '#submit' => ['::cancel'],
     ];
-    $form['actions']['step1'] = [
+    $form['actions']['step2'] = [
       '#type'   => 'submit',
       '#value'  => $this->t("Back"),
       '#submit' => ['::goBack'],
     ];
-    $incomeSourceSummary = $this->entity->getIncomeSourceSummary();
-    for ($i = 0; $i < count($incomeSourceSummary); $i++) {
-      $form['field_monthly_income_sources']['widget'][$i]['top']['type']['label']['#markup']
-        = $incomeSourceSummary[$i]['source'];
-      $form['field_monthly_income_sources']['widget'][$i]['top']['summary']['fields_info']['#summary']['content'][0]
-        = $incomeSourceSummary[$i]['amount'];
-    }
+
     return $form;
   }
 
@@ -42,7 +36,7 @@ class MonthlyBudgetFormStep2 extends ContentEntityForm {
   }
 
   public function goBack(array $form, FormStateInterface $form_state) {
-    $form_state->setRedirect('entity.monthly_budget.add_budget_step1', ['monthly_budget' => $this->entity->id()]);
+    $form_state->setRedirect('entity.monthly_budget.add_budget_step2', ['monthly_budget' => $this->entity->id()]);
   }
 
   /**

@@ -18,7 +18,7 @@ entity.monthly_budget.add_budget_step1:
   path: '/monthly-budget/{monthly_budget}/step1'
   defaults:
     _entity_form: monthly_budget.step_1
-    _title: 'Monthly Budget Step 1'
+    _title: 'Add month'
   requirements:
     _permission: 'administer monthly budget'
 
@@ -26,6 +26,14 @@ entity.monthly_budget.add_budget_step2:
   path: '/monthly-budget/{monthly_budget}/step2'
   defaults:
     _entity_form: monthly_budget.step_2
-    _title: 'Monthly Budget Step 2'
+    _title: 'Add Monthly Income Sources'
+  requirements:
+    _permission: 'administer monthly budget'
+
+entity.monthly_budget.add_budget_step3:
+  path: '/monthly-budget/{monthly_budget}/step3'
+  defaults:
+    _entity_form: monthly_budget.step_3
+    _title: 'Add Expenses'
   requirements:
     _permission: 'administer monthly budget'
