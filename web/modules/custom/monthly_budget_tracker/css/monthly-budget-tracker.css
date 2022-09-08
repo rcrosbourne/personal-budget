@@ -8,4 +8,21 @@
         grid-template-columns: 374px auto 1fr auto;
     }
 
+    table[id^=field-monthly-expenses-values] div[id^="edit-field-monthly-expenses-"] {
+        -ms-grid-columns: 374px auto 1fr auto;
+        grid-template-columns: 374px auto 1fr auto;
+    }
+
+    .reporting {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
+    .details {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
 }
+
+

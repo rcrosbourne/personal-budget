@@ -16,7 +16,7 @@ class MonthlyBudgetFormStep3 extends ContentEntityForm {
     $form['#attached']['library'][]
       = 'monthly_budget_tracker/monthly_budget_tracker';
     //update the field list
-    $form['actions']['submit']['#value'] = $this->t('Save and Continue');
+    $form['actions']['submit']['#value'] = $this->t('View Breakdown');
     $form['actions']['cancel'] = [
       '#type'   => 'submit',
       '#value'  => $this->t("Cancel"),
@@ -27,7 +27,13 @@ class MonthlyBudgetFormStep3 extends ContentEntityForm {
       '#value'  => $this->t("Back"),
       '#submit' => ['::goBack'],
     ];
-
+    $expenses = $this->entity->getExpenseSummary();
+    for ($i = 0; $i < count($expenses); $i++) {
+      $form['field_monthly_expenses']['widget'][$i]['top']['type']['label']['#markup']
+        = $expenses[$i]['source'];
+      $form['field_monthly_expenses']['widget'][$i]['top']['summary']['fields_info']['#summary']['content'][0]
+        = $expenses[$i]['amount'];
+    }
     return $form;
   }
 
@@ -65,7 +71,7 @@ class MonthlyBudgetFormStep3 extends ContentEntityForm {
         break;
     }
 
-    $form_state->setRedirect('entity.monthly_budget.add_budget_step3', ['monthly_budget' => $this->entity->id()]);
+    $form_state->setRedirect('entity.monthly_budget.canonical', ['monthly_budget' => $this->entity->id()]);
 
     return $result;
   }

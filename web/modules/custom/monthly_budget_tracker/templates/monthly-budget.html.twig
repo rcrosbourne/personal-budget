@@ -14,11 +14,35 @@
  */
 #}
 <article{{ attributes }}>
-  {% if view_mode != 'full' %}
-    {{ title_prefix }}
-    {{ title_suffix }}
-  {% endif %}
-  {% if content %}
-    {{- content -}}
-  {% endif %}
+    {% if view_mode != 'full' %}
+        {{ title_prefix }}
+        {{ title_suffix }}
+    {% endif %}
+    {% if content %}
+        <div class="reporting">
+            <div class="reporting__income_percentage">
+                <span>Percentage of Income Spent</span>
+                <h2>{{ monthly_budget.getPercentageOfIncomeSpent(true) }}%</h2>
+            </div>
+            <div class="reporting__summary">
+                <span>Summary</span>
+                <div>
+                    <span>Total Monthly Income</span>
+                    <h2>${{ monthly_budget.getTotalIncome(true) }}</h2>
+                </div>
+                <div>
+                    <span>Total Monthly Expenses</span>
+                    <h2>${{ monthly_budget.getTotalExpenses(true) }}</h2>
+                </div>
+                <div>
+                    <span>Cash Balance</span>
+                    <h2>${{ monthly_budget.getCashBalance(true) }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="details">
+            {{monthly_budget.getIncomeDetails()}}
+            {{monthly_budget.getExpenseDetails()}}
+        </div>
+    {% endif %}
 </article>
