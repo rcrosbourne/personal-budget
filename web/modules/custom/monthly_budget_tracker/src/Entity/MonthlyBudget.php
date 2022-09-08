@@ -28,6 +28,7 @@ use Drupal\user\EntityOwnerTrait;
  *     "list_builder" =
  *     "Drupal\monthly_budget_tracker\MonthlyBudgetListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "access" = "Drupal\monthly_budget_tracker\MonthlyBudgetAccess",
  *     "form" = {
  *       "add" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetForm",
  *       "step_1" =
@@ -76,6 +77,12 @@ class MonthlyBudget extends ContentEntityBase
       // If no owner has been set explicitly, make the anonymous user the owner.
       $this->setOwnerId(0);
     }
+  }
+  public function getOwner() {
+    return $this->get('uid')->entity;
+  }
+  public function getOwnerId() {
+    return $this->get('uid')->target_id;
   }
 
   /**
