@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\monthly_budget_tracker\MonthlyBudgetInterface;
 use Drupal\user\EntityOwnerTrait;
+use Illuminate\Support\Arr;
 
 /**
  * Defines the monthly budget entity class.
@@ -78,9 +79,11 @@ class MonthlyBudget extends ContentEntityBase
       $this->setOwnerId(0);
     }
   }
+
   public function getOwner() {
     return $this->get('uid')->entity;
   }
+
   public function getOwnerId() {
     return $this->get('uid')->target_id;
   }
@@ -231,8 +234,57 @@ class MonthlyBudget extends ContentEntityBase
     return $details;
   }
 
+  public function getPercentageChart() {
+    $build['mychart'] = [
+      '#data'       => [
+        'labels'   => ['Income', 'Expense'],
+        'datasets' => [
+          [
+            'label'                => 'Budget',
+            'data'                 => [$this->getTotalIncome(), $this->getTotalExpenses()],
+            'backgroundColor'      => ['#00557f', '#f8413c'],
+            'hoverBackgroundColor' => ['#004060', '#9b2926'],
+          ],
+        ],
+      ],
+      '#graph_type' => 'halfdonut',
+      '#id'         => 'income_percentage',
+      '#options'    => [
+        'title' => [
+          'text' => t($this->getPercentageOfIncomeSpent(TRUE) . "%"),
+        ],
+      ],
+      '#plugins'    => ['halfdonutTotal'],
+      '#type'       => 'chartjs_api',
+    ];
+    return $build;
+  }
+
+  public function getChart() {
+    $build['mychart'] = [
+      '#data'       => [
+        'labels'   => ['Income', 'Expenses'],
+        'datasets' => [
+          [
+            'label'                => 'Budget',
+            'data'                 => [
+              $this->getTotalIncome(),
+              $this->getTotalExpenses(),
+            ],
+            'backgroundColor'      => ['#38bdf8', '#fb7185'],
+            'hoverBackgroundColor' => ['#0284c7', '#e11d48'],
+          ],
+        ],
+      ],
+      '#graph_type' => 'bar',
+      '#id'         => 'income_vs_expenses',
+      '#type'       => 'chartjs_api',
+    ];
+    return $build;
+  }
+
   public function getExpenseDetails() {
-     $details['detail'] = [
+    $details['detail'] = [
       '#type'    => 'table',
       '#caption' => t('Monthly Expenses'),
       '#header'  => [

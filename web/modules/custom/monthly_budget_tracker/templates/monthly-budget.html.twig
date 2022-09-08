@@ -22,7 +22,7 @@
         <div class="reporting">
             <div class="reporting__income_percentage">
                 <span>Percentage of Income Spent</span>
-                <h2>{{ monthly_budget.getPercentageOfIncomeSpent(true) }}%</h2>
+                <div>{{monthly_budget.getPercentageChart()}}</div>
             </div>
             <div class="reporting__summary">
                 <span>Summary</span>
@@ -38,6 +38,10 @@
                     <span>Cash Balance</span>
                     <h2>${{ monthly_budget.getCashBalance(true) }}</h2>
                 </div>
+            </div>
+            <div>
+                <span>Income vs Expenses</span>
+                {{monthly_budget.getChart()}}
             </div>
         </div>
         <div class="details">
