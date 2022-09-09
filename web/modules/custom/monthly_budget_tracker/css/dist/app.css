@@ -764,17 +764,6 @@ video {
     table[id^=field-monthly-expenses-values] div[id^="edit-field-monthly-expenses-"] {
         grid-template-columns: 374px auto 1fr auto;
     }
-
-    /*.reporting {*/
-    /*    display: flex;*/
-    /*    justify-content: space-between;*/
-    /*    align-items: start;*/
-    /*}*/
-    .details {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-    }
 }
 
 .hover\:shadow-xl:hover {

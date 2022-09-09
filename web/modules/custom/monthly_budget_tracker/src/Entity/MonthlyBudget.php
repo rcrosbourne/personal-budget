@@ -28,7 +28,7 @@ use Illuminate\Support\Arr;
  *   handlers = {
  *     "list_builder" =
  *     "Drupal\monthly_budget_tracker\MonthlyBudgetListBuilder",
- *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "views_data" = "Drupal\monthly_budget_tracker\MonthlyBudgetViewsData",
  *     "access" = "Drupal\monthly_budget_tracker\MonthlyBudgetAccess",
  *     "form" = {
  *       "add" = "Drupal\monthly_budget_tracker\Form\MonthlyBudgetForm",
