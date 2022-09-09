@@ -76,7 +76,7 @@ function monthly_budget_tracker_user_predelete(UserInterface $account) {
  * Implements hook_form_alter().
  */
 function monthly_budget_tracker_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if(in_array($form_id, ['monthly_budget_step_1_form', 'monthly_budget_step_2_form', 'monthly_budget_step_3_form'])) {
+  if(in_array($form_id, ['monthly_budget_step_1_form', 'monthly_budget_step_2_form', 'monthly_budget_step_3_form', 'monthly_budget.add_form'])) {
     $form['actions']['delete']['#access'] = FALSE;
   }
 }
