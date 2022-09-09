@@ -153,6 +153,12 @@ class MonthlyBudget extends ContentEntityBase
     return $fields;
   }
 
+  public function getIncomeSources() {
+    return $this->get('field_monthly_income_sources')->referencedEntities();
+  }
+  public function getExpenses() {
+    return $this->get('field_monthly_expenses')->referencedEntities();
+  }
   public function getIncomeSourceSummary() {
     $incomeSources
       = $this->get('field_monthly_income_sources')->referencedEntities();

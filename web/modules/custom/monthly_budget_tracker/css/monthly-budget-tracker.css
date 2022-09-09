@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 [data-drupal-selector="tabledrag-toggle-weight-wrapper"] {
     visibility: hidden;
 }
@@ -13,11 +17,11 @@
         grid-template-columns: 374px auto 1fr auto;
     }
 
-    .reporting {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-    }
+    /*.reporting {*/
+    /*    display: flex;*/
+    /*    justify-content: space-between;*/
+    /*    align-items: start;*/
+    /*}*/
     .details {
         display: flex;
         justify-content: space-between;

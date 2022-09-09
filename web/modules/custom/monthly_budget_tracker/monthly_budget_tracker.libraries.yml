@@ -4,7 +4,7 @@ monthly_budget_tracker:
     js/monthly-budget-tracker.js: {}
   css:
     theme:
-      css/monthly-budget-tracker.css: {}
+      css/dist/app.css: {}
   dependencies:
     - core/drupalSettings
 #    - monthly_budget_tracker/jquery-labelauty

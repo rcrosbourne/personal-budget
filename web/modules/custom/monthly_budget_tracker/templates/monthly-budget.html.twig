@@ -19,34 +19,104 @@
         {{ title_suffix }}
     {% endif %}
     {% if content %}
-        <div class="reporting">
-            <div class="reporting__income_percentage">
-                <span>Percentage of Income Spent</span>
-                <div>{{monthly_budget.getPercentageChart()}}</div>
-            </div>
-            <div class="reporting__summary">
-                <span>Summary</span>
-                <div>
-                    <span>Total Monthly Income</span>
-                    <h2>${{ monthly_budget.getTotalIncome(true) }}</h2>
-                </div>
-                <div>
-                    <span>Total Monthly Expenses</span>
-                    <h2>${{ monthly_budget.getTotalExpenses(true) }}</h2>
-                </div>
-                <div>
-                    <span>Cash Balance</span>
-                    <h2>${{ monthly_budget.getCashBalance(true) }}</h2>
-                </div>
-            </div>
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 bg-gray-100 rounded">
             <div>
-                <span>Income vs Expenses</span>
-                {{monthly_budget.getChart()}}
+                <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 hover:shadow-xl transition-shadow">
+                        <dt class="truncate text-sm font-medium text-gray-500">Total Monthly Income</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">${{ monthly_budget.getTotalIncome(true) }}</dd>
+                    </div>
+
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 hover:shadow-xl transition-shadow">
+                        <dt class="truncate text-sm font-medium text-gray-500">Total Monthly Expenses</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">${{ monthly_budget.getTotalExpenses(true) }}</dd>
+                    </div>
+
+                    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 hover:shadow-xl transition-shadow">
+                        <dt class="truncate text-sm font-medium text-gray-500">Cash Balance</dt>
+                        <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">${{ monthly_budget.getCashBalance(true) }}</dd>
+                    </div>
+                </dl>
             </div>
         </div>
-        <div class="details">
-            {{monthly_budget.getIncomeDetails()}}
-            {{monthly_budget.getExpenseDetails()}}
+
+
+        <div class="md:flex md:justify-between md:items-start max-w-[992px] mt-4">
+            <div class="reporting__income_percentage">
+                <div class="text-xl text-center w-full">Percentage of Income Spent</div>
+                <div class="mt-3">{{ monthly_budget.getPercentageChart() }}</div>
+            </div>
+            <div>
+                <div class="text-xl text-center">Income vs Expenses</div>
+                <div class="mt-3">{{ monthly_budget.getChart() }}</div>
+            </div>
+        </div>
+        <div class="mt-4 max-w-[992px] md:flex md:justify-between">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="sm:flex sm:items-center">
+                    <div class="sm:flex-auto">
+                        <h1 class="text-xl font-semibold text-gray-900">Monthly Income</h1>
+                        <p class="mt-2 text-sm text-gray-700">A list of all the monthly income sources for "{{ monthly_budget.get('label').value }}"</p>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-col">
+                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-300">
+                                    <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Source</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                    {% for incomeSource in monthly_budget.getIncomeSources() %}
+                                        <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ incomeSource.get('field_income_source').entity.get('name').value }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ incomeSource.get('field_net_amount').value }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="sm:flex sm:items-center">
+                    <div class="sm:flex-auto">
+                        <h1 class="text-xl font-semibold text-gray-900">Monthly Expenses</h1>
+                        <p class="mt-2 text-sm text-gray-700">A list of all the monthly expenses for "{{ monthly_budget.get('label').value }}"</p>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-col">
+                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-300">
+                                    <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Source</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                    {% for expense in monthly_budget.getExpenses() %}
+                                        <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ expense.get('field_expense_type').entity.get('name').value }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ expense.get('field_expense_amount').value }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endif %}
 </article>
