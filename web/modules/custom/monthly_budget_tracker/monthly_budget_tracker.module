@@ -21,6 +21,12 @@ function monthly_budget_tracker_theme() {
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function monthly_budget_tracker_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'monthly_budget_tracker/monthly_budget_tracker';
+}
+/**
  * Prepares variables for monthly budget templates.
  *
  * Default template: monthly-budget.html.twig.
@@ -91,5 +97,5 @@ function monthly_budget_tracker_form_alter(&$form, \Drupal\Core\Form\FormStateIn
   }
 }
 function _login_page_redirect_user_login_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  $form_state->setRedirect('view.frontpage.page_1');
+  $form_state->setRedirect('view.monthly_budget.page_1');
 }

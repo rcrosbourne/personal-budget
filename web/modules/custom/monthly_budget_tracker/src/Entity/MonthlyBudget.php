@@ -243,11 +243,11 @@ class MonthlyBudget extends ContentEntityBase
   public function getPercentageChart() {
     $build['mychart'] = [
       '#data'       => [
-        'labels'   => ['Income', 'Expense'],
+        'labels'   => ['Cash balance', 'Expense'],
         'datasets' => [
           [
             'label'                => 'Budget',
-            'data'                 => [$this->getTotalIncome(), $this->getTotalExpenses()],
+            'data'                 => [$this->getTotalIncome() - $this->getTotalExpenses(), $this->getTotalExpenses()],
             'backgroundColor'      => ['#00557f', '#f8413c'],
             'hoverBackgroundColor' => ['#004060', '#9b2926'],
           ],

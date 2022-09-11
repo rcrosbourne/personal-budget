@@ -756,7 +756,248 @@ video {
     visibility: hidden;
 }
 
+#block-olivero-content > div > div > div > div.view-content > table {
+  min-width: 100%;
+  overflow: hidden;
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-color: rgb(0 0 0 / var(--tw-ring-opacity));
+  --tw-ring-opacity: 0.05;
+}
+
+@media (min-width: 768px) {
+
+  #block-olivero-content > div > div > div > div.view-content > table {
+    border-radius: 0.5rem;
+  }
+}
+
+#block-olivero-content > div > div > div > div.view-content > table > thead {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+#view-label-table-column {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  padding-left: 1rem;
+  padding-right: 0.75rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+
+  #view-label-table-column {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #view-label-table-column {
+    padding-left: 2rem;
+  }
+}
+
+/* Start Table headings*/
+#view-monthly-budget-tracker-total-monthly-income-table-column {
+  display: none;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+@media (min-width: 768px) {
+
+  #view-monthly-budget-tracker-total-monthly-income-table-column {
+    display: table-cell;
+  }
+}
+
+#view-monthly-budget-tracker-total-monthly-expenses-table-column {
+  display: none;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+
+  #view-monthly-budget-tracker-total-monthly-expenses-table-column {
+    display: table-cell;
+  }
+}
+
+#block-olivero-content > div > div > div > div > table > thead > tr > th.views-field.views-field-operations {
+  position: relative;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  padding-left: 0.75rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+
+  #block-olivero-content > div > div > div > div > table > thead > tr > th.views-field.views-field-operations {
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+  #block-olivero-content > div > div > div > div > table > thead > tr > th.views-field.views-field-operations {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #block-olivero-content > div > div > div > div > table > thead > tr > th.views-field.views-field-operations {
+    padding-right: 2rem;
+  }
+}
+
+/* End Table headings*/
+
+/* Start Body */
+#block-olivero-content > div > div > div > div > table > tbody > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+  --tw-divide-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-divide-opacity));
+}
+#block-olivero-content > div > div > div > div > table > tbody {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+/* End Body */
+
+/* Start Rows */
+#block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-label {
+  white-space: nowrap;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.6875rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+@media (min-width: 640px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-label {
+    padding-left: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-label {
+    padding-left: 2rem;
+  }
+}
+
+#block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-income {
+  display: none;
+  white-space: nowrap;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.6875rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-income {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-income {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-income {
+    padding-left: 2rem;
+  }
+}
+
+#block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-expenses {
+  display: none;
+  white-space: nowrap;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.6875rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-expenses {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-expenses {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-expenses {
+    padding-left: 2rem;
+  }
+}
+
+/* End Rows */
+
 @media (min-width: 992px) {
+    .page-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
     table[id^=field-monthly-income-sources-values] div[id^="edit-field-monthly-income-sources-"] {
         grid-template-columns: 374px auto 1fr auto;
     }
@@ -830,6 +1071,11 @@ video {
   .md\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 

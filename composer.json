@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.1",
         "drupal/adminimal_theme": "^1.6",
         "drupal/chartjs_api": "^1.1",
@@ -40,11 +41,17 @@
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
     "extra": {
+        "patches": {
+            "drupal/devel": {
+                "419-webprofiler-related-crash": "https://gitlab.com/drupalspoons/webprofiler/uploads/db847be51e1679e7c852ffae0f101e12/419-Webprofiler-related-crash-in-core-9.4.2.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
