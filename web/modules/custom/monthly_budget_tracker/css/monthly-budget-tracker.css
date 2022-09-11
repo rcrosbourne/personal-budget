@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-drupal-selector="tabledrag-toggle-weight-wrapper"] {
+    visibility: hidden;
+}
+
+#block-olivero-content > div > div > div > div.view-content > table {
+    @apply min-w-full overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg
+}
+
+#block-olivero-content > div > div > div > div.view-content > table > thead {
+    @apply bg-gray-50;
+}
+
+#view-label-table-column {
+    @apply py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8
+}
+
+/* Start Table headings*/
+#view-monthly-budget-tracker-total-monthly-income-table-column {
+    @apply px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden md:table-cell
+}
+
+#view-monthly-budget-tracker-total-monthly-expenses-table-column {
+    @apply px-3 py-3.5 text-left text-sm font-semibold text-gray-900 hidden md:table-cell
+}
+
+#block-olivero-content > div > div > div > div > table > thead > tr > th.views-field.views-field-operations {
+    @apply relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8 md:table-cell
+}
+
+/* End Table headings*/
+
+/* Start Body */
+#block-olivero-content > div > div > div > div > table > tbody {
+    @apply divide-y divide-gray-200 bg-white
+}
+
+/* End Body */
+
+/* Start Rows */
+#block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-label {
+    @apply whitespace-nowrap pb-4 leading-[1.6875rem] pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6 lg:pl-8
+}
+
+#block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-income {
+    @apply whitespace-nowrap pb-4 leading-[1.6875rem] pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6 lg:pl-8 hidden md:table-cell
+}
+
+#block-olivero-content > div > div > div > div > table > tbody > tr > td.views-field.views-field-monthly-budget-tracker-total-monthly-expenses {
+    @apply whitespace-nowrap pb-4 leading-[1.6875rem] pl-4 pr-3 text-sm font-medium text-gray-500 sm:pl-6 lg:pl-8 hidden md:table-cell
+}
+
+/* End Rows */
+
+@media (min-width: 992px) {
+    .page-wrapper {
+        @apply mx-auto;
+    }
+
+
+    table[id^=field-monthly-income-sources-values] div[id^="edit-field-monthly-income-sources-"] {
+        -ms-grid-columns: 374px auto 1fr auto;
+        grid-template-columns: 374px auto 1fr auto;
+    }
+
+    table[id^=field-monthly-expenses-values] div[id^="edit-field-monthly-expenses-"] {
+        -ms-grid-columns: 374px auto 1fr auto;
+        grid-template-columns: 374px auto 1fr auto;
+    }
+}
+
+

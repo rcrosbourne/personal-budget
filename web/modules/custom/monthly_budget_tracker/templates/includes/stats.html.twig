@@ -1,0 +1,15 @@
+<div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 bg-gray-100 rounded">
+    <div>
+        <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+
+            {{include('@monthly_budget_tracker/components/stat.html.twig',
+                {statTitle: 'Total Monthly Income', statValue: "$#{totalMonthlyIncome}" }, with_context=false)}}
+
+            {{include('@monthly_budget_tracker/components/stat.html.twig',
+                {statTitle: 'Total Monthly Expenses', statValue: "$#{totalMonthlyExpenses}" }, with_context=false)}}
+
+            {{include('@monthly_budget_tracker/components/stat.html.twig',
+                {statTitle: 'Cash Balance', statValue: "$#{cashBalance}" }, with_context=false)}}
+        </dl>
+    </div>
+</div>

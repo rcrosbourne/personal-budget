@@ -1,0 +1,20 @@
+<div class="mt-4 max-w-[992px] md:flex md:justify-between">
+    {{ include('@monthly_budget_tracker/components/table.html.twig',
+        {
+            title: 'Monthly Income',
+            caption: "A list of all the monthly income sources for \"#{monthly_budget.get('label').value}\"",
+            headings: ["Source", "Amount"],
+            rows: monthly_budget.getIncomeSourcesAsTableRow()
+        },
+        with_context=false
+    ) }}
+    {{ include('@monthly_budget_tracker/components/table.html.twig',
+        {
+            title: 'Monthly Expenses',
+            caption: "A list of all the monthly expenses for \"#{monthly_budget.get('label').value}\"",
+            headings: ["Source", "Amount"],
+            rows: monthly_budget.getExpensesAsTableRow(true)
+        },
+        with_context=false
+    ) }}
+</div>

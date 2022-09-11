@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * @file
+ * Provides a monthly budget entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\monthly_budget_tracker\Entity\MonthlyBudget;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function monthly_budget_tracker_theme() {
+  return [
+    'monthly_budget' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function monthly_budget_tracker_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'monthly_budget_tracker/monthly_budget_tracker';
+}
+/**
+ * Prepares variables for monthly budget templates.
+ *
+ * Default template: monthly-budget.html.twig.
+ *
+ * @param  array  $variables
+ *     An associative array containing:
+ *     - elements: An associative array containing the monthly budget
+ *     information and any fields attached to the entity.
+ *     - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_monthly_budget(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  $variables['monthly_budget'] = $variables['elements']['#monthly_budget'];
+  $variables['#attached']['library'][]
+    = 'monthly_budget_tracker/monthly_budget_tracker';
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function monthly_budget_tracker_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_reassign':
+      // Anonymize monthly budgets.
+      $storage = \Drupal::entityTypeManager()->getStorage('monthly_budget');
+      $monthly_budget_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($monthly_budget_ids) as $monthly_budget) {
+        $monthly_budget->setOwnerId(0);
+        $monthly_budget->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function monthly_budget_tracker_user_predelete(UserInterface $account) {
+  // Delete monthly budgets.
+  $storage = \Drupal::entityTypeManager()->getStorage('monthly_budget');
+  $monthly_budget_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $monthly_budgets = $storage->loadMultiple($monthly_budget_ids);
+  $storage->delete($monthly_budgets);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function monthly_budget_tracker_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if($form_id == 'user_login_form') {
+    $form['#submit'][] = '_login_page_redirect_user_login_form_submit';
+  }
+  if (in_array($form_id, [
+    'monthly_budget_step_1_form',
+    'monthly_budget_step_2_form',
+    'monthly_budget_step_3_form',
+    'monthly_budget.add_form',
+  ])
+  ) {
+    $form['actions']['delete']['#access'] = FALSE;
+  }
+}
+function _login_page_redirect_user_login_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form_state->setRedirect('view.monthly_budget.page_1');
+}

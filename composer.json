@@ -16,14 +16,20 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.1",
         "drupal/adminimal_theme": "^1.6",
+        "drupal/chartjs_api": "^1.1",
         "drupal/core-composer-scaffold": "^9.4",
         "drupal/core-project-message": "^9.4",
         "drupal/core-recommended": "^9.4",
         "drupal/devel": "^4.1",
         "drupal/devel_entity_updates": "^4.0",
-        "drush/drush": "^11.1"
+        "drupal/examples": "^3.0",
+        "drupal/paragraphs": "^1.15",
+        "drupal/twig_tweak": "^3.1",
+        "drush/drush": "^11.1",
+        "laravel/helpers": "^1.5"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -35,11 +41,17 @@
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
     "extra": {
+        "patches": {
+            "drupal/devel": {
+                "419-webprofiler-related-crash": "https://gitlab.com/drupalspoons/webprofiler/uploads/db847be51e1679e7c852ffae0f101e12/419-Webprofiler-related-crash-in-core-9.4.2.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

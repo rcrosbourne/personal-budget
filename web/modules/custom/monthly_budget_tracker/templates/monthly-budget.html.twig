@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a monthly budget entity.
+ *
+ * This template is used when viewing a canonical monthly budget page,
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.label'.
+ * - attributes: HTML attributes for the container element.
+ * - monthly_budget: Monthly Budget Entity.
+ *
+ * @see template_preprocess_monthly_budget()
+ */
+#}
+<article{{ attributes }}>
+    {% if view_mode != 'full' %}
+        {{ title_prefix }}
+        {{ title_suffix }}
+    {% endif %}
+    {% if content %}
+        {{ include ('@monthly_budget_tracker/includes/stats.html.twig',
+            {
+                totalMonthlyIncome: monthly_budget.getTotalIncome(true),
+                totalMonthlyExpenses: monthly_budget.getTotalExpenses(true),
+                cashBalance: monthly_budget.getCashBalance(true)
+            }, with_context = false
+        )}}
+
+        {{ include ('@monthly_budget_tracker/includes/visualizations.html.twig') }}
+
+        {{ include ('@monthly_budget_tracker/includes/tables.html.twig') }}
+
+    {% endif %}
+</article>

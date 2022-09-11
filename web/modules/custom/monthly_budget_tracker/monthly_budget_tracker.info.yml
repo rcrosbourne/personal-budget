@@ -1,0 +1,5 @@
+name: Monthly Budget Tracker
+type: module
+description: Platform to track a users monthly budget
+package: custom
+core_version_requirement: ^9 || ^10

@@ -1,0 +1,6 @@
+administer monthly budget:
+  title: 'Administer monthly budget settings'
+  restrict access: true
+
+administer own monthly budget:
+  title: 'Create / Edit / Update your budget'
