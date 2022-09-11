@@ -15,7 +15,6 @@ class MonthlyBudgetFormStep1 extends ContentEntityForm {
     $form = parent::buildForm($form, $form_state);
     //update the field list
     $form['field_month']['widget'][0]['value']['#date_part_order'] = ['month', 'year'];
-//    $form['field_month']['widget'][0]['value']['#default_value'] = new DrupalDateTime('now');
     $form['actions']['submit']['#value']  =  $this->t('Save and Continue');
     $form['actions']['cancel'] = [
       '#type' => 'submit',
