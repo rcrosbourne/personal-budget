@@ -153,10 +153,28 @@ class MonthlyBudget extends ContentEntityBase
     return $fields;
   }
 
-  public function getIncomeSources() {
+  public function getIncomeSources(bool $asTableRow = false) {
+    if($asTableRow) {
+      $rows = [];
+      $records = $this->get('field_monthly_income_sources')->referencedEntities();
+      foreach ($records as $index => $record) {
+        $rows[$index][] = $record->get('field_income_source')->entity->get('name')->value;
+        $rows[$index][] = $record->get('field_net_amount')->value;
+      }
+      return $rows;
+    }
     return $this->get('field_monthly_income_sources')->referencedEntities();
   }
-  public function getExpenses() {
+  public function getExpenses(bool $asTableRow = false) {
+    if($asTableRow) {
+     $rows = [];
+      $records = $this->get('field_monthly_expenses')->referencedEntities();
+      foreach ($records as $index => $record) {
+        $rows[$index][] = $record->get('field_expense_type')->entity->get('name')->value;
+        $rows[$index][] = $record->get('field_expense_amount')->value;
+      }
+      return $rows;
+    }
     return $this->get('field_monthly_expenses')->referencedEntities();
   }
   public function getIncomeSourceSummary() {
