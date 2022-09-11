@@ -10,7 +10,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\monthly_budget_tracker\MonthlyBudgetInterface;
 use Drupal\user\EntityOwnerTrait;
-use Illuminate\Support\Arr;
+use Drupal\user\UserInterface;
 
 /**
  * Defines the monthly budget entity class.
@@ -80,18 +80,24 @@ class MonthlyBudget extends ContentEntityBase
     }
   }
 
-  public function getOwner() {
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwner(): UserInterface {
     return $this->get('uid')->entity;
   }
 
-  public function getOwnerId() {
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwnerId(): ?int {
     return $this->get('uid')->target_id;
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['label'] = BaseFieldDefinition::create('string')
@@ -153,31 +159,38 @@ class MonthlyBudget extends ContentEntityBase
     return $fields;
   }
 
-  public function getIncomeSources(bool $asTableRow = false) {
-    if($asTableRow) {
-      $rows = [];
-      $records = $this->get('field_monthly_income_sources')->referencedEntities();
-      foreach ($records as $index => $record) {
-        $rows[$index][] = $record->get('field_income_source')->entity->get('name')->value;
-        $rows[$index][] = $record->get('field_net_amount')->value;
-      }
-      return $rows;
+  /*
+   * {@inheritdoc}
+   */
+  public function getIncomeSourcesAsTableRow(): array {
+    $rows = [];
+    $records = $this->get('field_monthly_income_sources')->referencedEntities();
+    foreach ($records as $index => $record) {
+      $rows[$index][]
+        = $record->get('field_income_source')->entity->get('name')->value;
+      $rows[$index][] = $record->get('field_net_amount')->value;
     }
-    return $this->get('field_monthly_income_sources')->referencedEntities();
+    return $rows;
   }
-  public function getExpenses(bool $asTableRow = false) {
-    if($asTableRow) {
-     $rows = [];
-      $records = $this->get('field_monthly_expenses')->referencedEntities();
-      foreach ($records as $index => $record) {
-        $rows[$index][] = $record->get('field_expense_type')->entity->get('name')->value;
-        $rows[$index][] = $record->get('field_expense_amount')->value;
-      }
-      return $rows;
+
+  /*
+   * {@inheritdoc}
+   */
+  public function getExpensesAsTableRow(): array {
+    $rows = [];
+    $records = $this->get('field_monthly_expenses')->referencedEntities();
+    foreach ($records as $index => $record) {
+      $rows[$index][]
+        = $record->get('field_expense_type')->entity->get('name')->value;
+      $rows[$index][] = $record->get('field_expense_amount')->value;
     }
-    return $this->get('field_monthly_expenses')->referencedEntities();
+    return $rows;
   }
-  public function getIncomeSourceSummary() {
+
+  /*
+   * {@inheritdoc}
+   */
+  public function getIncomeSourceSummary(): array {
     $incomeSources
       = $this->get('field_monthly_income_sources')->referencedEntities();
     $summary = [];
@@ -191,7 +204,10 @@ class MonthlyBudget extends ContentEntityBase
     return $summary;
   }
 
-  public function getExpenseSummary() {
+  /*
+   * {@inheritdoc}
+   */
+  public function getExpenseSummary(): array {
     $monthlyExpenses
       = $this->get('field_monthly_expenses')->referencedEntities();
     $summary = [];
@@ -205,7 +221,10 @@ class MonthlyBudget extends ContentEntityBase
     return $summary;
   }
 
-  public function getTotalIncome($formatted = FALSE) {
+  /*
+   * {@inheritdoc}
+   */
+  public function getTotalIncome($formatted = FALSE): string|float {
     $total = 0;
     $incomeSources
       = $this->get('field_monthly_income_sources')->referencedEntities();
@@ -215,7 +234,10 @@ class MonthlyBudget extends ContentEntityBase
     return $formatted ? number_format($total, 2) : $total;
   }
 
-  public function getTotalExpenses($formatted = FALSE) {
+  /*
+   * {@inheritdoc}
+   */
+  public function getTotalExpenses(bool $formatted = FALSE): string|float {
     $total = 0;
     $expenses = $this->get('field_monthly_expenses')->referencedEntities();
     foreach ($expenses as $expense) {
@@ -224,48 +246,36 @@ class MonthlyBudget extends ContentEntityBase
     return $formatted ? number_format($total, 2) : $total;
   }
 
-  public function getPercentageOfIncomeSpent($formatted = FALSE) {
+  /*
+   * {@inheritdoc}
+   */
+  public function getPercentageOfIncomeSpent(bool $formatted = FALSE): string|float {
     $percentage = ($this->getTotalExpenses() / $this->getTotalIncome()) * 100;
     return $formatted ? number_format($percentage, 0) : $percentage;
   }
 
-  public function getCashBalance($formatted = FALSE) {
+  /*
+   * {@inheritdoc}
+   */
+  public function getCashBalance(bool $formatted = FALSE): string|float {
     $balance = $this->getTotalIncome() - $this->getTotalExpenses();
     return $formatted ? number_format($balance, 2) : $balance;
   }
 
-  public function getIncomeDetails() {
-    $details['detail'] = [
-      '#type'    => 'table',
-      '#caption' => t('Monthly Income'),
-      '#header'  => [
-        t('Source'),
-        t('Amount'),
-      ],
-    ];
-    $incomeSources
-      = $this->get('field_monthly_income_sources')->referencedEntities();
-    for ($i = 0; $i < count($incomeSources); $i++) {
-      $details['detail'][$i]['source'] = [
-        '#type'   => 'markup',
-        '#markup' => $incomeSources[$i]->get('field_income_source')->entity->get('name')->value,
-      ];
-      $details['detail'][$i]['amount'] = [
-        '#type'   => 'markup',
-        '#markup' => $incomeSources[$i]->get('field_net_amount')->value,
-      ];
-    }
-    return $details;
-  }
-
-  public function getPercentageChart() {
+  /*
+   * {@inheritdoc}
+   */
+  public function getPercentageChart(): array {
     $build['mychart'] = [
       '#data'       => [
         'labels'   => ['Cash balance', 'Expense'],
         'datasets' => [
           [
             'label'                => 'Budget',
-            'data'                 => [$this->getTotalIncome() - $this->getTotalExpenses(), $this->getTotalExpenses()],
+            'data'                 => [
+              $this->getTotalIncome() - $this->getTotalExpenses(),
+              $this->getTotalExpenses(),
+            ],
             'backgroundColor'      => ['#00557f', '#f8413c'],
             'hoverBackgroundColor' => ['#004060', '#9b2926'],
           ],
@@ -284,7 +294,10 @@ class MonthlyBudget extends ContentEntityBase
     return $build;
   }
 
-  public function getChart() {
+  /*
+   * {@inheritdoc}
+   */
+  public function getIncomeVsExpensesChart(): array {
     $build['mychart'] = [
       '#data'       => [
         'labels'   => ['Income', 'Expenses'],
@@ -305,30 +318,6 @@ class MonthlyBudget extends ContentEntityBase
       '#type'       => 'chartjs_api',
     ];
     return $build;
-  }
-
-  public function getExpenseDetails() {
-    $details['detail'] = [
-      '#type'    => 'table',
-      '#caption' => t('Monthly Expenses'),
-      '#header'  => [
-        t('Source'),
-        t('Amount'),
-      ],
-    ];
-    $monthlyExpenses
-      = $this->get('field_monthly_expenses')->referencedEntities();
-    for ($i = 0; $i < count($monthlyExpenses); $i++) {
-      $details['detail'][$i]['source'] = [
-        '#type'   => 'markup',
-        '#markup' => $monthlyExpenses[$i]->get('field_expense_type')->entity->get('name')->value,
-      ];
-      $details['detail'][$i]['amount'] = [
-        '#type'   => 'markup',
-        '#markup' => $monthlyExpenses[$i]->get('field_expense_amount')->value,
-      ];
-    }
-    return $details;
   }
 
 }

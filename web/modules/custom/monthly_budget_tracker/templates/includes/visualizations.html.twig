@@ -3,5 +3,5 @@
         {title: 'Percentage of Income Spent', widget: monthly_budget.getPercentageChart() }, with_context=false) }}
 
     {{ include ('@monthly_budget_tracker/components/chart.html.twig',
-        {title: 'Income vs Expenses', widget: monthly_budget.getChart() }, with_context=false) }}
+        {title: 'Income vs Expenses', widget: monthly_budget.getIncomeVsExpensesChart() }, with_context=false) }}
 </div>
