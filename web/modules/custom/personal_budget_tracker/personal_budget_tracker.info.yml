@@ -1,5 +1,0 @@
-name: Personal Budget Tracker
-type: module
-description: Provides a way for users to keep track of their monthly budget
-package: custom
-core_version_requirement: ^9 || ^10
